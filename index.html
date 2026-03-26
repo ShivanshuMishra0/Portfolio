@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shivanshu Mishra Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #fbfaf6;
+      color: #0b1742;
+      overflow-x: hidden;
+    }
+
+    .bg-animation {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 187, 92, 0.18), transparent 18%),
+        radial-gradient(circle at 80% 18%, rgba(66, 110, 255, 0.12), transparent 20%),
+        radial-gradient(circle at 70% 75%, rgba(255, 209, 148, 0.16), transparent 22%),
+        linear-gradient(135deg, #fffdf8 0%, #f5f6fb 45%, #fff9ef 100%);
+    }
+
+    .bg-animation::before,
+    .bg-animation::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .bg-animation::before {
+      background-image:
+        linear-gradient(rgba(21, 35, 87, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(21, 35, 87, 0.045) 1px, transparent 1px);
+      background-size: 90px 90px;
+      mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+      opacity: 0.65;
+    }
+
+    .bg-animation::after {
+      background:
+        radial-gradient(circle at 12% 28%, rgba(0, 0, 0, 0.22) 0 2px, transparent 3px),
+        radial-gradient(circle at 22% 18%, rgba(0, 0, 0, 0.18) 0 2px, transparent 3px),
+        radial-gradient(circle at 45% 24%, rgba(0, 0, 0, 0.18) 0 2px, transparent 3px),
+        radial-gradient(circle at 68% 18%, rgba(0, 0, 0, 0.2) 0 2px, transparent 3px),
+        radial-gradient(circle at 86% 32%, rgba(0, 0, 0, 0.18) 0 2px, transparent 3px),
+        linear-gradient(25deg, transparent 49.8%, rgba(0, 0, 0, 0.08) 50%, transparent 50.2%),
+        linear-gradient(115deg, transparent 49.8%, rgba(0, 0, 0, 0.06) 50%, transparent 50.2%);
+      background-size: auto, auto, auto, auto, auto, 320px 220px, 410px 280px;
+      opacity: 0.45;
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0px) scale(1); }
+      to { transform: translateY(-12px) scale(1.02); }
+    }
+
+    header {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 22px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #10194f;
+      font-weight: 600;
+      font-size: 18px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: #2746ff;
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 3px;
+      background: #2746ff;
+      border-radius: 10px;
+    }
+
+    .hero {
+      min-height: calc(100vh - 90px);
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      padding: 40px 0;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(18, 32, 86, 0.08);
+      box-shadow: 0 10px 25px rgba(32, 43, 102, 0.08);
+      color: #5d647d;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .status-chip::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #43c463;
+      box-shadow: 0 0 0 6px rgba(67, 196, 99, 0.14);
+    }
+
+    .hero-text h2 {
+      font-size: 72px;
+      line-height: 1.03;
+      margin-bottom: 10px;
+      color: #091544;
+    }
+
+    .hero-text h1 {
+      font-size: 74px;
+      line-height: 1.03;
+      margin-bottom: 18px;
+      color: #091544;
+    }
+
+    .hero-text h1 span {
+      color: #ff7a00;
+    }
+
+    .hero-text h3 {
+      font-size: 38px;
+      margin-bottom: 22px;
+      color: #171717;
+      min-height: 52px;
+    }
+
+    .typing-text {
+      color: #8a4b08;
+      border-right: 3px solid #8a4b08;
+      white-space: nowrap;
+      overflow: hidden;
+      padding-right: 6px;
+      animation: blink 0.8s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .hero-note {
+      max-width: 650px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .hero-line {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.74);
+      border: 1px solid rgba(15, 26, 70, 0.06);
+      box-shadow: 0 10px 30px rgba(34, 60, 160, 0.08);
+      color: #5b6482;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .highlight-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .highlight-box {
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(39, 70, 255, 0.08);
+      box-shadow: 0 10px 24px rgba(39, 70, 255, 0.08);
+      min-width: 150px;
+    }
+
+    .highlight-box strong {
+      display: block;
+      color: #0d194c;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .highlight-box span {
+      color: #6a718b;
+      font-size: 14px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .social-icons a {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #e7d8bd;
+      color: #3a2b15;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+      box-shadow: 0 10px 24px rgba(105, 79, 33, 0.16);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .social-icons a:hover {
+      transform: translateY(-4px);
+      background: #dcc7a2;
+    }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .circle-outer {
+      width: 420px;
+      height: 420px;
+      background: linear-gradient(135deg, #ffd35c, #ffbf00);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 18px 40px rgba(255, 196, 0, 0.32);
+      position: relative;
+    }
+
+    .circle-outer::before {
+      content: "";
+      position: absolute;
+      width: 460px;
+      height: 460px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 186, 38, 0.45);
+      animation: spin 20s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .circle-inner {
+  width: 310px;
+  height: 310px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0b1742, #3250ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 10px solid #fff4bf;
+  overflow: hidden;
+  padding: 0;
+}
+
+.circle-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+
+
+    .content-panel {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      display: none;
+    }
+
+    .content-panel.active {
+      display: block;
+      animation: fadeUp 0.45s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .panel-card {
+      background: rgba(255,255,255,0.84);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(34, 60, 160, 0.12);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .panel-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .panel-title p {
+      color: #2746ff;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .panel-title h2 {
+      font-size: 42px;
+      color: #091544;
+    }
+
+    .panel-card p,
+    .panel-card li,
+    .panel-card a {
+      color: #5a6482;
+      line-height: 1.8;
+      font-size: 17px;
+      text-decoration: none;
+    }
+
+    .about-only-text {
+      font-size: 18px;
+      line-height: 1.95;
+      color: #5a6482;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .skill {
+      background: white;
+      border: 1px solid #dbe2ff;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      color: #142456;
+      box-shadow: 0 8px 20px rgba(39, 70, 255, 0.08);
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .mini-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 10px 24px rgba(34, 60, 160, 0.08);
+      border: 1px solid #eef1ff;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,122,0,0.14);
+      color: #d45e00;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .mini-card h3 {
+      margin-bottom: 10px;
+      color: #0f1a46;
+      font-size: 22px;
+    }
+
+    .mini-card p,
+    .mini-card li,
+    .mini-card a {
+      color: #5a6482;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .mini-card ul {
+      padding-left: 20px;
+      margin-top: 14px;
+    }
+
+    .empty-box {
+      min-height: 220px;
+      border: 2px dashed #cdbb98;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.65);
+      box-shadow: 0 10px 30px rgba(34, 60, 160, 0.08);
+    }
+
+    .home-only.hidden {
+      display: none;
+    }
+
+    @media (max-width: 992px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero-note {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .highlight-row,
+      .social-icons {
+        justify-content: center;
+      }
+
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-text h2 {
+        font-size: 48px;
+      }
+
+      .hero-text h1 {
+        font-size: 50px;
+      }
+
+      .hero-text h3 {
+        font-size: 28px;
+        min-height: 40px;
+      }
+
+      .circle-outer {
+        width: 300px;
+        height: 300px;
+      }
+
+      .circle-outer::before {
+        width: 330px;
+        height: 330px;
+      }
+
+      .circle-inner {
+        width: 220px;
+        height: 220px;
+        font-size: 58px;
+      }
+
+      .nav-links a {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-animation"></div>
+
+  <header>
+    <div class="navbar">
+      <div class="nav-links">
+        <a class="nav-item active" data-section="home">Home</a>
+        <a class="nav-item" data-section="about">About</a>
+        <a class="nav-item" data-section="skills">Skills</a>
+        <a class="nav-item" data-section="education">Education</a>
+        <a class="nav-item" data-section="work">My Work</a>
+        <a class="nav-item" data-section="experience">Experience</a>
+        <a class="nav-item" data-section="contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <div id="homeView" class="home-only">
+    <section class="hero">
+      <div class="hero-text">
+        <div class="status-chip">Open to analytics, BI, and data-driven roles</div>
+        <h2>Hi There,</h2>
+        <h1>I'm <span>Shivanshu Mishra</span></h1>
+        <h3>I Build <span class="typing-text" id="typingText"></span></h3>
+
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/shivanshu-mishra-analytics/" target="_blank">in</a>
+          <a href="mailto:mishrashivanshu310@gmail.com">@</a>
+          <a href="tel:+918429655399">☎</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+  <div class="circle-outer">
+    <div class="circle-inner">
+      <img src="file:///C:/Users/mishr/OneDrive/Desktop/Jsb2/Ai.png" alt="Shivanshu Mishra">
+    </div>
+  </div>
+</div>
+
+    </section>
+  </div>
+
+  <div id="about" class="content-panel">
+    <div class="panel-card">
+      <p class="about-only-text">
+        Detail-oriented and curious data-focused professional with hands-on experience in spreadsheet
+        analysis, data visualization, and programming for automation. I enjoy working with data to
+        uncover patterns, improve accuracy, and create insights that teams can actually use. My work
+        combines analytical thinking, business understanding, and a practical approach to solving problems.
+      </p>
+    </div>
+  </div>
+
+  <div id="skills" class="content-panel">
+    <div class="panel-card">
+      <div class="panel-title">
+        <p>Skills</p>
+        <h2></h2>
+      </div>
+      <div class="skills">
+        <div class="skill">Statistical Analysis</div>
+        <div class="skill">Python</div>
+        <div class="skill">SQL</div>
+        <div class="skill">Power BI (DAX)</div>
+        <div class="skill">Tableau</div>
+        <div class="skill">Google Looker Studio</div>
+        <div class="skill">ETL</div>
+        <div class="skill">MS Office Suite</div>
+        <div class="skill">Data Storytelling</div>
+        <div class="skill">Stakeholder Management</div>
+        <div class="skill">Strategic Planning</div>
+        <div class="skill">Collaborative Problem Solving</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="education" class="content-panel">
+    <div class="panel-card">
+      <div class="panel-title">
+        <p>Education</p>
+        <h2></h2>
+      </div>
+      <div class="grid-2">
+        <div class="mini-card">
+          <span class="badge">2026</span>
+          <h3>PGDM in Business Analytics & Marketing</h3>
+          <p>Jaipuria School of Business, Ghaziabad</p>
+        </div>
+        <div class="mini-card">
+          <span class="badge">2023</span>
+          <h3>Bachelor's of Computer Applications (BCA)</h3>
+          <p>Amity University, Uttar Pradesh</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="work" class="content-panel">
+    <div class="panel-card">
+      <div class="panel-title">
+        <p>My Work</p>
+        <h2></h2>
+      </div>
+      <div class="empty-box"></div>
+    </div>
+  </div>
+
+  <div id="experience" class="content-panel">
+    <div class="panel-card">
+      <div class="panel-title">
+        <p>Experience</p>
+        <h2></h2>
+      </div>
+      <div class="mini-card">
+        <span class="badge">May 2025 - July 2025</span>
+        <h3>Business Analytics Intern</h3>
+        <p>Vas Ventures Pvt. Ltd.</p>
+        <ul>
+          <li>Built and maintained a structured database of 5,000+ consultants using Excel, improving pre-sales targeting efficiency by 35%.</li>
+          <li>Cleaned, validated, and segmented datasets using Python (pandas) to enhance data accuracy and lead quality.</li>
+          <li>Developed Python-based automation scripts using Selenium to extract structured contact data from large web-based platforms.</li>
+          <li>Gained exposure to professional work environment and business processes.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="contact" class="content-panel">
+    <div class="panel-card">
+      <div class="panel-title">
+        <p>Contact</p>
+        <h2>Get In Touch</h2>
+      </div>
+      <div class="grid-3">
+        <div class="mini-card">
+          <h3>Email</h3>
+          <a href="mail_to:mishrashivanshu310@gmail.com">mishrashivanshu310@gmail.com</a>
+        </div>
+        <div class="mini-card">
+          <h3>Phone</h3>
+          <a href="tel:+918429655399">+91 8429655399</a>
+        </div>
+        <div class="mini-card">
+          <h3>LinkedIn</h3>
+          <a href="https://www.linkedin.com/in/shivanshu-mishra-analytics/" target="_blank">Open Profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const navItems = document.querySelectorAll(".nav-item");
+    const panels = document.querySelectorAll(".content-panel");
+    const homeView = document.getElementById("homeView");
+
+    function openSection(sectionName) {
+      navItems.forEach(item => item.classList.remove("active"));
+      panels.forEach(panel => panel.classList.remove("active"));
+
+      const activeNav = document.querySelector(`.nav-item[data-section="${sectionName}"]`);
+      if (activeNav) activeNav.classList.add("active");
+
+      if (sectionName === "home") {
+        homeView.classList.remove("hidden");
+      } else {
+        homeView.classList.add("hidden");
+        const targetPanel = document.getElementById(sectionName);
+        if (targetPanel) targetPanel.classList.add("active");
+      }
+    }
+
+    navItems.forEach(item => {
+      item.addEventListener("click", () => {
+        openSection(item.dataset.section);
+      });
+    });
+
+    const words = [
+      "Insightful Dashboards",
+      "Business Intelligence Reports"
+    ];
+
+    const typingText = document.getElementById("typingText");
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+
+      if (!deleting) {
+        typingText.textContent = currentWord.slice(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === currentWord.length) {
+          deleting = true;
+          setTimeout(typeEffect, 1300);
+          return;
+        }
+      } else {
+        typingText.textContent = currentWord.slice(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+      }
+
+      setTimeout(typeEffect, deleting ? 45 : 85);
+    }
+
+    typeEffect();
+  </script>
+</body>
+</html>
